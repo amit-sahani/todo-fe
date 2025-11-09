@@ -1,0 +1,495 @@
+:root {
+  /* professional palette */
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --accent: #0b63ff; /* primary blue */
+  --accent-2: #0b5566; /* teal accent */
+  --muted: #6b7280;
+  --success: #059669;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 6px 18px rgba(11, 99, 255, 0.06);
+  /* list contrast variables */
+  --list-bg: #eaf6ff; /* subtle blue background for lists */
+  --item-bg: #ffffff; /* item background */
+  --item-border: rgba(11, 99, 255, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: #0f172a;
+}
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 0 12px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--card);
+  box-shadow: 0 1px 6px rgba(2, 6, 23, 0.04);
+}
+.nav-left button,
+.nav-right button {
+  margin-right: 8px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.nav-left button.active {
+  border-bottom: 2px solid var(--accent);
+}
+.nav-user {
+  margin-right: 8px;
+  color: var(--muted);
+}
+.card {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* list container uses a contrasting background so items pop */
+.list.card {
+  background: var(--list-bg);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(8, 40, 80, 0.04);
+  margin-bottom: 18px;
+}
+
+/* add button (circle with plus) */
+.add-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), #0857d6);
+  border: 0;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(11, 99, 255, 0.18);
+  cursor: pointer;
+}
+.add-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* todo row: single line layout with spacing and status accent */
+.todo-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: var(--item-bg);
+  border: 1px solid var(--item-border);
+  box-shadow: 0 6px 20px rgba(11, 63, 136, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.2s ease;
+  animation: fadeInUp 0.28s ease both;
+}
+.todo-row:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(11, 63, 136, 0.08);
+}
+
+input,
+select {
+  padding: 8px;
+  border: 1px solid #e1e8f0;
+  border-radius: 8px;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.link {
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  cursor: pointer;
+}
+.form-card {
+  margin: 12px 0;
+}
+.todo-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.todo-name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #0f172a;
+}
+.todo-meta {
+  color: var(--muted);
+  font-size: 13px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.todo-actions button {
+  padding: 6px 10px;
+}
+.pagination {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+}
+.empty {
+  padding: 14px;
+  color: var(--muted);
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 8px;
+  min-width: 320px;
+  max-width: 90%;
+}
+.modal-close {
+  margin-top: 8px;
+  border: 0;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+.modal-body {
+  padding-top: 6px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--accent);
+}
+.modal-close {
+  color: var(--muted);
+}
+
+/* input focus and accessible styles */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(11, 99, 255, 0.06);
+  border-color: var(--accent);
+}
+
+.link {
+  color: var(--accent-2);
+}
+
+/* auth-form inside modal */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 300px;
+}
+.auth-form label {
+  font-size: 13px;
+  color: var(--muted);
+}
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6eefc;
+}
+.auth-form .auth-actions {
+  justify-content: flex-end;
+  align-items: center;
+}
+.auth-form .primary {
+  background: var(--accent);
+  color: white;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.auth-form .primary:hover {
+  filter: brightness(0.95);
+}
+.auth-form .error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* modal card forms (todos) tweak to avoid double padding */
+.modal .card {
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+.modal .form-card {
+  padding: 0;
+}
+
+/* form rows used in todo form */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.form-row label {
+  font-size: 13px;
+  color: var(--muted);
+}
+.form-row input,
+.form-row select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6eefc;
+  width: 100%;
+}
+.form-card .row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.form-card .primary {
+  background: var(--accent);
+  color: white;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.form-card .primary:hover {
+  filter: brightness(0.97);
+}
+.form-card .link {
+  align-self: center;
+}
+
+/* ensure modal sizes nicely on desktop */
+@media (min-width: 720px) {
+  .modal {
+    max-width: 520px;
+    padding: 22px;
+  }
+}
+.auth-card {
+  max-width: 420px;
+  margin: 20px auto;
+}
+.activity-row {
+  padding: 8px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+/* history list: single-line rows similar to todos */
+.activity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: var(--item-bg);
+  border: 1px solid var(--item-border);
+  box-shadow: 0 6px 20px rgba(11, 63, 136, 0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.activity-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(11, 63, 136, 0.06);
+}
+.activity-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.activity-title {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.activity-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.activity-by {
+  color: var(--muted);
+}
+.activity-time {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+/* activity badges */
+.badge-activity {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: white;
+  font-size: 12px;
+}
+.badge-activity-create {
+  background: linear-gradient(90deg, var(--success), #059669);
+}
+.badge-activity-update {
+  background: linear-gradient(90deg, var(--accent), #0b63ff);
+}
+.badge-activity-delete {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+/* badges */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  margin-right: 6px;
+}
+.badge-status {
+  background: var(--muted);
+}
+.badge-status-todo {
+  background: linear-gradient(90deg, var(--accent), #0060e6);
+}
+.badge-status-progress {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+.badge-status-completed {
+  background: linear-gradient(90deg, var(--success), #0ea5a0);
+}
+
+/* priority badges: 1 (lowest) -> 5 (highest) */
+.badge-priority-1 {
+  background: linear-gradient(90deg, #e6edf8, #cfe4ff);
+  color: #073763;
+}
+.badge-priority-2 {
+  background: linear-gradient(90deg, #d1f7e3, #a7f0c4);
+  color: #0b5f3a;
+}
+.badge-priority-3 {
+  background: linear-gradient(90deg, #fff4d6, #ffe29a);
+  color: #7a4b00;
+}
+.badge-priority-4 {
+  background: linear-gradient(90deg, #ffe6e6, #ffbdbd);
+  color: #7a1d1d;
+}
+.badge-priority-5 {
+  background: linear-gradient(90deg, #ffdbe6, #ff9fcf);
+  color: #5a1144;
+}
+
+/* icon button (edit) */
+.icon-btn {
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:hover {
+  background: rgba(11, 99, 255, 0.06);
+}
+
+@media (max-width: 640px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .todo-main {
+    max-width: 100%;
+  }
+}
+
+/* animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
